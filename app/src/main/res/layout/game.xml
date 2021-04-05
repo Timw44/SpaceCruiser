@@ -25,19 +25,36 @@
         app:layout_constraintVertical_bias="0.022" />
 
     <TextView
-        android:id="@+id/countTX"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    android:id="@+id/countTX"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:text=""
+    android:textAlignment="center"
+    android:textColor="@color/tan"
+    android:textSize="20dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.549"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.022" />
+
+    <TextView
+        android:id="@+id/introTX"
+        android:layout_width="385dp"
+        android:layout_height="177dp"
         android:gravity="center_horizontal"
-        android:text=""
+        android:text="You are part of a special task force that fights for safer
+space travel. Navigate the Space Cruiser through the asteroids while destroying
+hazardous debris and rouge UFOs. Good Luck!"
         android:textAlignment="center"
         android:textColor="@color/tan"
-        android:textSize="20dp"
+        android:textSize="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.549"
+        app:layout_constraintHorizontal_bias="0.533"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.022" />
-
+        app:layout_constraintVertical_bias="0.213" />
 </androidx.constraintlayout.widget.ConstraintLayout>
