@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.game);
     }
 
-    public void exit()
+    public void exit(View view)
     {
         finish();
         System.exit(0);
