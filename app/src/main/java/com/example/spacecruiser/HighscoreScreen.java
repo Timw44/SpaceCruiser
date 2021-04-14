@@ -13,7 +13,7 @@ public class HighscoreScreen extends AppCompatActivity
         setContentView(R.layout.highscore);
     }
 
-    public void backToMainMenu(View view)
+    public void back(View view)
     {
         setContentView(R.layout.activity_main);
     }
