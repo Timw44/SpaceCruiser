@@ -18,6 +18,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.game);
     }
 
+    public void highScoreClicked(View view)
+    {
+        setContentView(R.layout.highscore);
+    }
+
     public void exit(View view)
     {
         finish();
