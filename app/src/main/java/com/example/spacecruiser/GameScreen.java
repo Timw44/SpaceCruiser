@@ -1,4 +1,8 @@
 package com.example.spacecruiser;
 
-public class GameScreen {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class GameScreen extends AppCompatActivity
+{
+
 }

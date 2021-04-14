@@ -1,4 +1,8 @@
 package com.example.spacecruiser;
 
-public class HighscoreScreen {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class HighscoreScreen extends AppCompatActivity
+{
+
 }
