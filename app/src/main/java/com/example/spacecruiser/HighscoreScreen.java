@@ -15,6 +15,6 @@ public class HighscoreScreen extends AppCompatActivity
 
     public void back(View view)
     {
-        setContentView(R.layout.activity_main);
+        finish();
     }
 }
