@@ -14,9 +14,7 @@ import org.w3c.dom.Text;
 public class MainActivity extends AppCompatActivity {
 
     //variables
-    ImageView creditsPanel = (ImageView) findViewById(R.id.creditsIV);
-    Button closePanelBtn = (Button) findViewById(R.id.creditsBtn);
-    TextView credits = (TextView) findViewById(R.id.creditsTV);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
        initiatePlayBtn();
        initiateHighScoreBtn();
     }
+
 
     private void initiatePlayBtn()
     {
@@ -59,8 +58,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.highscore);
     }
 
+
     public void creditsClicked(View view)
     {
+        ImageView creditsPanel = (ImageView) findViewById(R.id.creditsIV);
+        Button closePanelBtn = (Button) findViewById(R.id.closePanelBtn);
+        TextView credits = (TextView) findViewById(R.id.creditsTV);
         creditsPanel.setVisibility(View.VISIBLE);
         closePanelBtn.setVisibility(View.VISIBLE);
         credits.setVisibility(View.VISIBLE);
@@ -68,6 +71,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void closePanel(View view)
     {
+        ImageView creditsPanel = (ImageView) findViewById(R.id.creditsIV);
+        Button closePanelBtn = (Button) findViewById(R.id.closePanelBtn);
+        TextView credits = (TextView) findViewById(R.id.creditsTV);
         creditsPanel.setVisibility(View.GONE);
         closePanelBtn.setVisibility(View.GONE);
         credits.setVisibility(View.GONE);
