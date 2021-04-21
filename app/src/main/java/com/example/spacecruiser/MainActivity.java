@@ -66,6 +66,13 @@ public class MainActivity extends AppCompatActivity {
         credits.setVisibility(View.VISIBLE);
     }
 
+    public void closePanel(View view)
+    {
+        creditsPanel.setVisibility(View.GONE);
+        closePanelBtn.setVisibility(View.GONE);
+        credits.setVisibility(View.GONE);
+    }
+
     public void exit(View view)
     {
         finish();
