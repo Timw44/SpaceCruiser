@@ -66,6 +66,7 @@
         android:textColor="@color/tan"
         android:textSize="30sp"
         android:textStyle="normal"
+        android:onClick="creditsClicked"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -88,4 +89,60 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleTX"
         app:layout_constraintVertical_bias="0.61" />
+
+    //credits panel
+    <ImageView
+        android:id="@+id/creditsIV"
+        android:layout_width="282dp"
+        android:layout_height="346dp"
+        android:background="@android:color/darker_gray"
+        android:elevation="2dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.454" />
+
+    <Button
+        android:id="@+id/closePanelBtn"
+        android:layout_width="46dp"
+        android:layout_height="44dp"
+        android:background="@android:color/holo_red_dark"
+        android:text="X"
+        android:visibility="gone"
+        android:onClick="closePanel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.821"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.254" />
+
+    <TextView
+        android:id="@+id/creditsTV"
+        android:layout_width="273dp"
+        android:layout_height="243dp"
+        android:text="Hi, thanks for playing my game. You are
+ probably looking at this by accident or
+ you are just snooping around the app.
+ Anyway, a little about this game, it is
+ a school project, but that isn't the main reason
+ I developed it. This is the beginning of my out reach into the world of game
+ development. As you can see, the game is about a ship that has to cruise outer
+ space making it a better place for the future of wide spread space travel.
+ I would appreciate any feed back or if you want to contact me you can send a
+ message to grimarctic@gmail.com"
+        android:textColor="@android:color/background_dark"
+        android:elevation="2dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/exitBtn"
+        app:layout_constraintEnd_toEndOf="@+id/creditsIV"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/creditsIV"
+        app:layout_constraintTop_toTopOf="@+id/playBtn"
+        app:layout_constraintVertical_bias="0.697" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

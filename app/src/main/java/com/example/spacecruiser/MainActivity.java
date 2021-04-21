@@ -6,8 +6,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
+
+    //variables
+    ImageView creditsPanel = (ImageView) findViewById(R.id.creditsIV);
+    Button closePanelBtn = (Button) findViewById(R.id.creditsBtn);
+    TextView credits = (TextView) findViewById(R.id.creditsTV);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +57,20 @@ public class MainActivity extends AppCompatActivity {
     public void highScoreClicked(View view)
     {
         setContentView(R.layout.highscore);
+    }
+
+    public void creditsClicked(View view)
+    {
+        creditsPanel.setVisibility(View.VISIBLE);
+        closePanelBtn.setVisibility(View.VISIBLE);
+        credits.setVisibility(View.VISIBLE);
+    }
+
+    public void closePanel(View view)
+    {
+        creditsPanel.setVisibility(View.GONE);
+        closePanelBtn.setVisibility(View.GONE);
+        credits.setVisibility(View.GONE);
     }
 
     public void exit(View view)
