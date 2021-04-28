@@ -13,6 +13,7 @@ public class GameScreen extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game);
+        getSupportActionBar().hide();
     }
 
     public void backToMainMenu(View view)
