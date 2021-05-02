@@ -22,7 +22,7 @@ public class GameScreen extends AppCompatActivity
     }
 
 
-    private void startGame(View view)
+    public void startGame(View view)
     {
         beginBtn.setVisibility(View.GONE);
         backBtn.setVisibility(View.GONE);

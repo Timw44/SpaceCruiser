@@ -67,6 +67,7 @@ hazardous debris and rouge UFOs. Good Luck!"
         android:textColor="@color/tan"
         android:textSize="30sp"
         android:textStyle="normal"
+        android:onClick="startGame"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -89,4 +90,18 @@ hazardous debris and rouge UFOs. Good Luck!"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/introTX"
         app:layout_constraintVertical_bias="0.409" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="184dp"
+        android:layout_height="141dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.908"
+        app:srcCompat="@drawable/spacecruiser" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
