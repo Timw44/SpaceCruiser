@@ -93,15 +93,16 @@ hazardous debris and rouge UFOs. Good Luck!"
 
     <ImageView
         android:id="@+id/SpaceCruiser"
-        android:layout_width="184dp"
-        android:layout_height="141dp"
+        android:layout_width="121dp"
+        android:layout_height="95dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.517"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.908"
-        app:srcCompat="@drawable/spacecruiser" />
+        app:layout_constraintVertical_bias="0.913"
+        app:srcCompat="@drawable/spacecrusier" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
