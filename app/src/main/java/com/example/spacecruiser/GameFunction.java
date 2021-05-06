@@ -8,4 +8,9 @@ public class GameFunction
 {
 
 
+    public void playerMove()
+    {
+
+    }
+
 }
