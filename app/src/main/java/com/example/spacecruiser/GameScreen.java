@@ -2,6 +2,7 @@ package com.example.spacecruiser;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -19,6 +20,7 @@ import com.example.spacecruiser.splashscreen.SplashScreen;
 public class GameScreen extends AppCompatActivity
 {
     //variables
+    private GameFunction gameFunction;
     Button beginBtn;
     Button backBtn;
     TextView intro;
@@ -30,7 +32,26 @@ public class GameScreen extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game);
         getSupportActionBar().hide();
+
+        Point point = new Point();
+        getWindowManager().getDefaultDisplay().getSize(point);
+
+        gameFunction = new GameFunction(this, point.x, point.y);
+
+        setContentView(gameFunction);
     }
+
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//        gameFunction.stop();
+//    }
+//
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        gameFunction.start();
+//    }
 
 
     public void startGame(View view)
@@ -44,7 +65,7 @@ public class GameScreen extends AppCompatActivity
         backBtn.setVisibility(View.GONE);
         intro.setVisibility(View.GONE);
         ship.setVisibility(View.VISIBLE);
-        GameFunction.isPlaying = true;
+        gameFunction.isPlaying = true;
     }
 
     public void backToMainMenu(View view)

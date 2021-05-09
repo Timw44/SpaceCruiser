@@ -20,12 +20,15 @@ public class GameFunction extends SurfaceView implements Runnable
     private Background backg1, backg2;
     private Paint paint;
     private int screenX, screenY, score = 0;
+    private float screenRatioX, screenRatioY;
 
     public GameFunction(Context context, int screenX, int screenY) {
         super(context);
 
         this.screenX = screenX;
         this.screenY = screenY;
+        screenRatioX = 1920f / screenX;
+        screenRatioY = 1080f / screenY;
 
         backg1 = new Background(screenX, screenY, getResources());
         backg2 = new Background(screenX, screenY, getResources());
@@ -46,8 +49,8 @@ public class GameFunction extends SurfaceView implements Runnable
 
     private void update()
     {
-        backg1.x -= 10;
-        backg2.x -= 10;
+        backg1.x -= 10 * screenRatioY;
+        backg2.x -= 10 * screenRatioY;
 
         if (backg1.y + backg1.background.getHeight() < 0) {
             backg1.y = screenY;
