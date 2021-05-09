@@ -18,12 +18,11 @@ import com.example.spacecruiser.splashscreen.SplashScreen;
 
 public class GameScreen extends AppCompatActivity
 {
-    Button beginBtn = (Button) findViewById(R.id.beginBtn);
-    Button backBtn = (Button) findViewById(R.id.backGameBtn);
-    TextView intro = (TextView) findViewById(R.id.introTX);
-    ImageView ship = (ImageView) findViewById(R.id.SpaceCruiser);
-    private ViewGroup mainLayout = (ConstraintLayout) findViewById(R.id.game);
-    private int xDelta;
+    //variables
+    Button beginBtn;
+    Button backBtn;
+    TextView intro;
+    ImageView ship;
 
 
     @Override
@@ -36,6 +35,11 @@ public class GameScreen extends AppCompatActivity
 
     public void startGame(View view)
     {
+        beginBtn = (Button) findViewById(R.id.beginBtn);
+        backBtn = (Button) findViewById(R.id.backGameBtn);
+        intro = (TextView) findViewById(R.id.introTX);
+        ship = (ImageView) findViewById(R.id.SpaceCruiser);
+
         beginBtn.setVisibility(View.GONE);
         backBtn.setVisibility(View.GONE);
         intro.setVisibility(View.GONE);
