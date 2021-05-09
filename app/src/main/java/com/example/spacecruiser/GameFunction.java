@@ -27,8 +27,8 @@ public class GameFunction extends SurfaceView implements Runnable
 
         this.screenX = screenX;
         this.screenY = screenY;
-        screenRatioX = 1920f / screenX;
-        screenRatioY = 1080f / screenY;
+        screenRatioX = 1080f / screenX;
+        screenRatioY = 1920f / screenY;
 
         backg1 = new Background(screenX, screenY, getResources());
         backg2 = new Background(screenX, screenY, getResources());
@@ -49,15 +49,15 @@ public class GameFunction extends SurfaceView implements Runnable
 
     private void update()
     {
-        backg1.x -= 10 * screenRatioY;
-        backg2.x -= 10 * screenRatioY;
+        backg1.y += 10 * screenRatioY;
+        backg2.y += 10 * screenRatioY;
 
         if (backg1.y + backg1.background.getHeight() < 0) {
             backg1.y = screenY;
         }
 
-        if (backg2.x + backg2.background.getHeight() < 0) {
-            backg2.x = screenX;
+        if (backg2.y + backg2.background.getHeight() < 0) {
+            backg2.y = screenY;
         }
     }
 

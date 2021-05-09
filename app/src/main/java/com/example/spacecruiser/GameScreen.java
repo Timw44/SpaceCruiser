@@ -41,17 +41,17 @@ public class GameScreen extends AppCompatActivity
         setContentView(gameFunction);
     }
 
-//    @Override
-//    protected void onPause() {
-//        super.onPause();
-//        gameFunction.stop();
-//    }
-//
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        gameFunction.start();
-//    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        gameFunction.stop();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        gameFunction.start();
+    }
 
 
     public void startGame(View view)
