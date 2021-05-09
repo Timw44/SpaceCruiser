@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class GameFunction extends SurfaceView implements Runnable
 {
+    private Thread thread;
     public static boolean isPlaying = false;
     private boolean isGameOver, isMoving = false;
     private int screenX, score = 0;
@@ -25,6 +26,23 @@ public class GameFunction extends SurfaceView implements Runnable
         while(isPlaying)
         {
 
+        }
+    }
+
+    public void start()
+    {
+        isPlaying = true;
+        thread = new Thread(this);
+        thread.start();
+    }
+
+    public void stop()
+    {
+        try {
+            isPlaying = true;
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
