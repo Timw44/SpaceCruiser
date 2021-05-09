@@ -25,7 +25,28 @@ public class GameFunction extends SurfaceView implements Runnable
     public void run() {
         while(isPlaying)
         {
+            update();
+            draw();
+            hold();
+        }
+    }
 
+    private void update()
+    {
+
+    }
+
+    private void draw()
+    {
+
+    }
+
+    private void hold()
+    {
+        try {
+            thread.sleep(20);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
