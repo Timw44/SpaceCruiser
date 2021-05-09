@@ -15,11 +15,21 @@ public class GameFunction extends SurfaceView implements Runnable
     private Thread thread;
     public static boolean isPlaying = false;
     private boolean isGameOver, isMoving = false;
-    private int screenX, score = 0;
+    private Background backg1, backg2;
+    private int screenX, screenY, score = 0;
 
-    public GameFunction(Context context) {
+    public GameFunction(Context context, int screenX, int screenY) {
         super(context);
+
+        this.screenX = screenX;
+        this.screenY = screenY;
+
+        backg1 = new Background(screenX, screenY, getResources());
+        backg2 = new Background(screenX, screenY, getResources());
+        backg2.y = screenY;
     }
+
+
 
     @Override
     public void run() {
@@ -33,7 +43,16 @@ public class GameFunction extends SurfaceView implements Runnable
 
     private void update()
     {
+        backg1.x -= 10;
+        backg2.x -= 10;
 
+        if (backg1.y + backg1.background.getHeight() < 0) {
+            backg1.y = screenY;
+        }
+
+        if (backg2.x + backg2.background.getHeight() < 0) {
+            backg2.x = screenX;
+        }
     }
 
     private void draw()
