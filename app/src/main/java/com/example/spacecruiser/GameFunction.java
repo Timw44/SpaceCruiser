@@ -1,6 +1,8 @@
 package com.example.spacecruiser;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
 import android.view.View;
@@ -16,6 +18,7 @@ public class GameFunction extends SurfaceView implements Runnable
     public static boolean isPlaying = false;
     private boolean isGameOver, isMoving = false;
     private Background backg1, backg2;
+    private Paint paint;
     private int screenX, screenY, score = 0;
 
     public GameFunction(Context context, int screenX, int screenY) {
@@ -58,6 +61,14 @@ public class GameFunction extends SurfaceView implements Runnable
     private void draw()
     {
 
+        if(getHolder().getSurface().isValid())
+        {
+            Canvas canvas = getHolder().lockCanvas();
+            canvas.drawBitmap(backg1.background, backg1.x, backg1.y, paint);
+            canvas.drawBitmap(backg2.background, backg2.x, backg2.y, paint);
+
+            getHolder().unlockCanvasAndPost(canvas);
+        }
     }
 
     private void hold()
