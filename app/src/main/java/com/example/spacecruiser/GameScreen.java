@@ -37,21 +37,19 @@ public class GameScreen extends AppCompatActivity
         getWindowManager().getDefaultDisplay().getSize(point);
 
         gameFunction = new GameFunction(this, point.x, point.y);
-
-        setContentView(gameFunction);
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        gameFunction.stop();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        gameFunction.start();
-    }
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//        gameFunction.stop();
+//    }
+//
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        gameFunction.start();
+//    }
 
 
     public void startGame(View view)
@@ -65,7 +63,9 @@ public class GameScreen extends AppCompatActivity
         backBtn.setVisibility(View.GONE);
         intro.setVisibility(View.GONE);
         ship.setVisibility(View.VISIBLE);
-        gameFunction.isPlaying = true;
+        setContentView(gameFunction);
+        super.onResume();
+        gameFunction.start();
     }
 
     public void backToMainMenu(View view)
