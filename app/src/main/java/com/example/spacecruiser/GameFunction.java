@@ -20,7 +20,7 @@ public class GameFunction extends SurfaceView implements Runnable
     private Background backg1, backg2;
     private Paint paint;
     private int screenX, screenY, score = 0;
-    private float screenRatioX, screenRatioY;
+    public static float screenRatioX, screenRatioY;
 
     public GameFunction(Context context, int screenX, int screenY) {
         super(context);
