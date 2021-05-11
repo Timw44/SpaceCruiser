@@ -1,6 +1,7 @@
 package com.example.spacecruiser;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.MotionEvent;
@@ -19,6 +20,7 @@ public class GameFunction extends SurfaceView implements Runnable
     private boolean isGameOver, isMoving = false;
     private Background backg1, backg2;
     private Paint paint;
+    private Player player;
     private int screenX, screenY, score = 0;
     public static float screenRatioX, screenRatioY;
 
@@ -29,6 +31,8 @@ public class GameFunction extends SurfaceView implements Runnable
         this.screenY = screenY;
         screenRatioX = 1080f / screenX;
         screenRatioY = 1920f / screenY;
+
+        player = new Player(screenY, getResources());
 
         backg1 = new Background(screenX, screenY, getResources());
         backg2 = new Background(screenX, screenY, getResources());
@@ -69,6 +73,8 @@ public class GameFunction extends SurfaceView implements Runnable
             Canvas canvas = getHolder().lockCanvas();
             canvas.drawBitmap(backg1.background, backg1.x, backg1.y, paint);
             canvas.drawBitmap(backg2.background, backg2.x, backg2.y, paint);
+
+            canvas.drawBitmap(player.spaceShip, player.x, player.y, paint);
 
             getHolder().unlockCanvasAndPost(canvas);
         }
