@@ -29,7 +29,7 @@ public class Player
 
         spaceShip = Bitmap.createScaledBitmap(spaceShip, width, height, false);
 
-        y = screenY / 2;
+        y = (int) (screenY / 1.2);
         x = (int) (64 * screenRatioX);
     }
 

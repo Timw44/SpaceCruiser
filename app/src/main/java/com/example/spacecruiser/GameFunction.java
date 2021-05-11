@@ -82,7 +82,7 @@ public class GameFunction extends SurfaceView implements Runnable
         {
             Canvas canvas = getHolder().lockCanvas();
             canvas.drawBitmap(backg1.background, backg1.x, backg1.y, paint);
-            canvas.drawBitmap(backg2.background, backg2.x, backg2.y, paint);
+            //canvas.drawBitmap(backg2.background, backg2.x, backg2.y, paint);
 
             canvas.drawBitmap(player.spaceShip, player.x, player.y, paint);
 
@@ -130,6 +130,7 @@ public class GameFunction extends SurfaceView implements Runnable
                 break;
             case MotionEvent.ACTION_UP:
                 player.isMovingLeft = false;
+                player.isMovingRight = false;
                 if (event.getX() > screenX / 2)
                     //toShoot++;
                 break;
