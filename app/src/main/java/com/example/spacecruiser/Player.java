@@ -10,6 +10,7 @@ import static com.example.spacecruiser.GameFunction.screenRatioY;
 
 public class Player
 {
+    boolean isMovingLeft, isMovingRight = false;
     int x, y, width, height;
     Bitmap spaceShip;
 

@@ -17,7 +17,7 @@ public class GameFunction extends SurfaceView implements Runnable
 {
     private Thread thread;
     public static boolean isPlaying = false;
-    private boolean isGameOver, isMoving = false;
+    private boolean isGameOver = false;
     private Background backg1, backg2;
     private Paint paint;
     private Player player;
@@ -62,6 +62,16 @@ public class GameFunction extends SurfaceView implements Runnable
 
         if (backg2.y + backg2.background.getHeight() < 0) {
             backg2.y = screenY;
+        }
+
+        //moves player and checks that they don't leave the screen
+        if(player.isMovingRight && player.x <= screenX - player.width)
+        {
+            player.x += 30;
+        }
+        if(player.isMovingLeft && player.x > 0)
+        {
+            player.x -= 30;
         }
     }
 
@@ -112,11 +122,14 @@ public class GameFunction extends SurfaceView implements Runnable
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 if (event.getX() < screenX / 2) {
-                   isMoving = true;
+                   player.isMovingLeft = true;
+                }
+                else {
+                    player.isMovingRight = true;
                 }
                 break;
             case MotionEvent.ACTION_UP:
-                isMoving = false;
+                player.isMovingLeft = false;
                 if (event.getX() > screenX / 2)
                     //toShoot++;
                 break;
