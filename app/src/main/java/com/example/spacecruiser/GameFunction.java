@@ -36,7 +36,7 @@ public class GameFunction extends SurfaceView implements Runnable
 
         backg1 = new Background(screenX, screenY, getResources());
         backg2 = new Background(screenX, screenY, getResources());
-        backg2.y = screenY;
+        backg2.y = 0 - screenY;
     }
 
 
@@ -56,22 +56,22 @@ public class GameFunction extends SurfaceView implements Runnable
         backg1.y += 10 * screenRatioY;
         backg2.y += 10 * screenRatioY;
 
-        if (backg1.y + backg1.background.getHeight() < 0) {
-            backg1.y = screenY;
+        if (backg1.y >= screenY) {
+            backg1.y = backg2.y - screenY;
         }
 
-        if (backg2.y + backg2.background.getHeight() < 0) {
-            backg2.y = screenY;
+        if (backg2.y >= screenY) {
+            backg2.y = backg1.y - screenY;
         }
 
         //moves player and checks that they don't leave the screen
         if(player.isMovingRight && player.x <= screenX - player.width)
         {
-            player.x += 30;
+            player.x += 20;
         }
         if(player.isMovingLeft && player.x > 0)
         {
-            player.x -= 30;
+            player.x -= 20;
         }
     }
 
@@ -82,7 +82,7 @@ public class GameFunction extends SurfaceView implements Runnable
         {
             Canvas canvas = getHolder().lockCanvas();
             canvas.drawBitmap(backg1.background, backg1.x, backg1.y, paint);
-            //canvas.drawBitmap(backg2.background, backg2.x, backg2.y, paint);
+            canvas.drawBitmap(backg2.background, backg2.x, backg2.y, paint);
 
             canvas.drawBitmap(player.spaceShip, player.x, player.y, paint);
 

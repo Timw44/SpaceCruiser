@@ -62,7 +62,7 @@ public class GameScreen extends AppCompatActivity
         beginBtn.setVisibility(View.GONE);
         backBtn.setVisibility(View.GONE);
         intro.setVisibility(View.GONE);
-        ship.setVisibility(View.VISIBLE);
+        //ship.setVisibility(View.VISIBLE);
         setContentView(gameFunction);
         super.onResume();
         gameFunction.start();
