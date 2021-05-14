@@ -85,17 +85,18 @@ public class GameFunction extends SurfaceView implements Runnable
 
         for (Bullet bullet : bullets)
         {
-            if(bullet.y > screenY)
+            if(bullet.y < 0)
             {
                 dud.add(bullet);
             }
-            bullet.y += 50 * screenRatioY;
+            bullet.y -= 50 * screenRatioY;
         }
+        player.shoot++;
 
-        for (Bullet bullet : dud)
+        /*for (Bullet bullet : dud)
         {
             dud.remove(bullet);
-        }
+        }*/
     }
 
     private void draw()
@@ -107,7 +108,7 @@ public class GameFunction extends SurfaceView implements Runnable
             canvas.drawBitmap(backg1.background, backg1.x, backg1.y, paint);
             canvas.drawBitmap(backg2.background, backg2.x, backg2.y, paint);
 
-            canvas.drawBitmap(player.spaceShip, player.x, player.y, paint);
+            canvas.drawBitmap(player.getPlayer(), player.x, player.y, paint);
 
             for (Bullet bullet : bullets)
             {
@@ -155,11 +156,12 @@ public class GameFunction extends SurfaceView implements Runnable
                 else {
                     player.isMovingRight = true;
                 }
-                player.shoot++;
+                //player.shoot = 1;
                 break;
             case MotionEvent.ACTION_UP:
                 player.isMovingLeft = false;
                 player.isMovingRight = false;
+                //player.shoot = 0;
                 break;
         }
         return true;
@@ -168,8 +170,8 @@ public class GameFunction extends SurfaceView implements Runnable
     public void newBullet()
     {
         Bullet bullet = new Bullet(getResources());
-        bullet.x = player.x + player.width;
-        bullet.y = player.y + (player.height / 2);
+        bullet.x = player.x + (player.width / 2);
+        bullet.y = player.y;
         bullets.add(bullet);
     }
 }

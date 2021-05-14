@@ -48,8 +48,9 @@ public class Player
     }
 
     Bitmap getPlayer() {
-        if (shoot != 0) {
+        if (shoot % 20 == 0) {
 
+            gameFunction.newBullet();
             if (shotCounter == 1) {
                 shotCounter++;
                 return shot1;
@@ -61,8 +62,8 @@ public class Player
             }
 
             shotCounter = 1;
-            shoot--;
-            gameFunction.newBullet();
+            //shoot--;
+
 
             return shot3;
         }
