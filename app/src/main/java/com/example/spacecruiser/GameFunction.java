@@ -108,7 +108,8 @@ public class GameFunction extends SurfaceView implements Runnable
             canvas.drawBitmap(backg1.background, backg1.x, backg1.y, paint);
             canvas.drawBitmap(backg2.background, backg2.x, backg2.y, paint);
 
-            canvas.drawBitmap(player.getPlayer(), player.x, player.y, paint);
+            canvas.drawBitmap(player.getPlayer(), player.x, player.y+500, paint);
+            canvas.drawBitmap(player.spaceShip, player.x, player.y, paint);
 
             for (Bullet bullet : bullets)
             {

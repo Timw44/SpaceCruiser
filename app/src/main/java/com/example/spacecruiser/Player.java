@@ -62,9 +62,6 @@ public class Player
             }
 
             shotCounter = 1;
-            //shoot--;
-
-
             return shot3;
         }
 
