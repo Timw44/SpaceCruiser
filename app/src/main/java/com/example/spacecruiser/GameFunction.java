@@ -32,7 +32,7 @@ public class GameFunction extends SurfaceView implements Runnable
         screenRatioX = 1080f / screenX;
         screenRatioY = 1920f / screenY;
 
-        player = new Player(screenY, getResources());
+        player = new Player(this, screenY, getResources());
 
         backg1 = new Background(screenX, screenY, getResources());
         backg2 = new Background(screenX, screenY, getResources());
@@ -53,6 +53,7 @@ public class GameFunction extends SurfaceView implements Runnable
 
     private void update()
     {
+        //moves background
         backg1.y += 10 * screenRatioY;
         backg2.y += 10 * screenRatioY;
 
@@ -77,7 +78,7 @@ public class GameFunction extends SurfaceView implements Runnable
 
     private void draw()
     {
-
+//draws everything
         if(getHolder().getSurface().isValid())
         {
             Canvas canvas = getHolder().lockCanvas();
@@ -127,14 +128,18 @@ public class GameFunction extends SurfaceView implements Runnable
                 else {
                     player.isMovingRight = true;
                 }
+                player.shoot++;
                 break;
             case MotionEvent.ACTION_UP:
                 player.isMovingLeft = false;
                 player.isMovingRight = false;
-                if (event.getX() > screenX / 2)
-                    //toShoot++;
                 break;
         }
         return true;
+    }
+
+    public void newBullet()
+    {
+
     }
 }
