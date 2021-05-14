@@ -12,6 +12,9 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class GameFunction extends SurfaceView implements Runnable
 {
@@ -21,6 +24,7 @@ public class GameFunction extends SurfaceView implements Runnable
     private Background backg1, backg2;
     private Paint paint;
     private Player player;
+    private List<Bullet> bullets;
     private int screenX, screenY, score = 0;
     public static float screenRatioX, screenRatioY;
 
@@ -33,6 +37,7 @@ public class GameFunction extends SurfaceView implements Runnable
         screenRatioY = 1920f / screenY;
 
         player = new Player(this, screenY, getResources());
+        bullets = new ArrayList<>();
 
         backg1 = new Background(screenX, screenY, getResources());
         backg2 = new Background(screenX, screenY, getResources());
@@ -74,6 +79,23 @@ public class GameFunction extends SurfaceView implements Runnable
         {
             player.x -= 20;
         }
+
+        //makes bullets and deletes them
+        List<Bullet> dud = new ArrayList<>();
+
+        for (Bullet bullet : bullets)
+        {
+            if(bullet.y > screenY)
+            {
+                dud.add(bullet);
+            }
+            bullet.y += 50 * screenRatioY;
+        }
+
+        for (Bullet bullet : dud)
+        {
+            dud.remove(bullet);
+        }
     }
 
     private void draw()
@@ -86,6 +108,11 @@ public class GameFunction extends SurfaceView implements Runnable
             canvas.drawBitmap(backg2.background, backg2.x, backg2.y, paint);
 
             canvas.drawBitmap(player.spaceShip, player.x, player.y, paint);
+
+            for (Bullet bullet : bullets)
+            {
+                canvas.drawBitmap(bullet.bullet, bullet.x, bullet.y, paint);
+            }
 
             getHolder().unlockCanvasAndPost(canvas);
         }
@@ -140,6 +167,9 @@ public class GameFunction extends SurfaceView implements Runnable
 
     public void newBullet()
     {
-
+        Bullet bullet = new Bullet(getResources());
+        bullet.x = player.x + player.width;
+        bullet.y = player.y + (player.height / 2);
+        bullets.add(bullet);
     }
 }
