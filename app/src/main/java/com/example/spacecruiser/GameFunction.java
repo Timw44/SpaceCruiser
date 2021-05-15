@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
 import android.view.View;
@@ -14,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 
 public class GameFunction extends SurfaceView implements Runnable
@@ -24,6 +26,8 @@ public class GameFunction extends SurfaceView implements Runnable
     private Background backg1, backg2;
     private Paint paint;
     private Player player;
+    private Enemy[] enemies;
+    private Random random;
     private List<Bullet> bullets;
     private int screenX, screenY, score = 0;
     public static float screenRatioX, screenRatioY;
@@ -42,6 +46,14 @@ public class GameFunction extends SurfaceView implements Runnable
         backg1 = new Background(screenX, screenY, getResources());
         backg2 = new Background(screenX, screenY, getResources());
         backg2.y = 0 - screenY;
+
+        enemies = new Enemy[4];
+        for(int i = 0; i<enemies.length; i++)
+        {
+            Enemy enemy = new Enemy(getResources());
+            enemies[i] = enemy;
+        }
+        random = new Random();
     }
 
 
@@ -90,8 +102,40 @@ public class GameFunction extends SurfaceView implements Runnable
                 dud.add(bullet);
             }
             bullet.y -= 50 * screenRatioY;
+
+            for (Enemy enemy : enemies)
+            {
+               if (Rect.intersects(enemy.getCollisionShape(), bullet.getCollisionShape()))
+                {
+                    enemy.y = -500;
+                    bullet.x = -100;
+                }
+            }
         }
         player.shoot++;
+
+        for (Enemy enemy : enemies)
+        {
+            enemy.y += enemy.speed;
+
+            if(enemy.y > screenY)
+            {
+                int bound = (int) (30 * screenRatioX);
+                enemy.speed = random.nextInt(bound);
+
+                if (enemy.speed < 10 * screenRatioX) {
+                    enemy.speed = (int) (10 * screenRatioX);
+                }
+
+                enemy.y = 0;
+                enemy.x = random.nextInt(screenX - enemy.width);
+            }
+            if (Rect.intersects(enemy.getCollisionShape(), player.getCollisionShape())) {
+
+                isGameOver = true;
+                return;
+            }
+        }//end of enemy for loop
 
         /*for (Bullet bullet : dud)
         {
@@ -108,12 +152,24 @@ public class GameFunction extends SurfaceView implements Runnable
             canvas.drawBitmap(backg1.background, backg1.x, backg1.y, paint);
             canvas.drawBitmap(backg2.background, backg2.x, backg2.y, paint);
 
+            if(isGameOver)
+            {
+                isPlaying = false;//ends game
+                getHolder().unlockCanvasAndPost(canvas);
+                return;
+            }
+
             canvas.drawBitmap(player.getPlayer(), player.x, player.y+500, paint);
             canvas.drawBitmap(player.spaceShip, player.x, player.y, paint);
 
             for (Bullet bullet : bullets)
             {
                 canvas.drawBitmap(bullet.bullet, bullet.x, bullet.y, paint);
+            }
+
+            for (Enemy enemy : enemies)
+            {
+                canvas.drawBitmap(enemy.getEnemy(), enemy.x, enemy.y, paint);
             }
 
             getHolder().unlockCanvasAndPost(canvas);

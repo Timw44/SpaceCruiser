@@ -68,4 +68,8 @@ public class Player
         return spaceShip;
     }
 
+    Rect getCollisionShape()
+    {
+        return new Rect(x, y, x + width, y + height);
+    }
 }

@@ -31,8 +31,8 @@ public class Bullet {
 
     }
 
-    /*Rect getCollisionShape () {
+    Rect getCollisionShape () {
         return new Rect(x, y, x + width, y + height);
-    }*/
+    }
 
 }
