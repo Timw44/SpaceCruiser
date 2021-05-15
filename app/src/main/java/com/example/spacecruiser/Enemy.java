@@ -14,6 +14,7 @@ public class Enemy
     public boolean wasShot = true;
     int x = 0, y, width, height, enemyCounter = 1;
     Bitmap alien1, alien2, alien3, alien4;
+    Bitmap debris1, debris2, debris3;
 
     Enemy (Resources res) {
 
