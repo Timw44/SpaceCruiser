@@ -20,6 +20,7 @@ import java.util.Random;
 
 public class GameFunction extends SurfaceView implements Runnable
 {
+    //variables
     private Thread thread;
     public static boolean isPlaying = false;
     private boolean isGameOver = false;
@@ -27,6 +28,8 @@ public class GameFunction extends SurfaceView implements Runnable
     private Paint paint;
     private Player player;
     private Enemy[] enemies;
+    private Debris[] debris;
+    private Asteroids[] asteroids;
     private Random random;
     private List<Bullet> bullets;
     private int screenX, screenY, score = 0;
@@ -135,12 +138,30 @@ public class GameFunction extends SurfaceView implements Runnable
                 isGameOver = true;
                 return;
             }
-        }//end of enemy for loop
+        }//end of enemy for each loop
 
-        /*for (Bullet bullet : dud)
+        for (Asteroids aster : asteroids)
         {
-            dud.remove(bullet);
-        }*/
+            aster.y += aster.speed;
+
+            if(aster.y > screenY)
+            {
+                int bound = (int) (30 * screenRatioX);
+                aster.speed = random.nextInt(bound);
+
+                if (aster.speed < 10 * screenRatioX) {
+                    aster.speed = (int) (10 * screenRatioX);
+                }
+
+                aster.y = 0;
+                aster.x = random.nextInt(screenX - aster.width);
+            }
+            if (Rect.intersects(aster.getCollisionShape(), player.getCollisionShape())) {
+
+                isGameOver = true;
+                return;
+            }
+        }//end of asteroids for each loop
     }
 
     private void draw()
