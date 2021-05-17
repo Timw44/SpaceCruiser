@@ -162,6 +162,29 @@ public class GameFunction extends SurfaceView implements Runnable
                 return;
             }
         }//end of asteroids for each loop
+
+        for (Debris deb : debris)
+        {
+            deb.y += deb.speed;
+
+            if(deb.y > screenY)
+            {
+                int bound = (int) (30 * screenRatioX);
+                deb.speed = random.nextInt(bound);
+
+                if (deb.speed < 10 * screenRatioX) {
+                    deb.speed = (int) (10 * screenRatioX);
+                }
+
+                deb.y = 0;
+                deb.x = random.nextInt(screenX - deb.width);
+            }
+            if (Rect.intersects(deb.getCollisionShape(), player.getCollisionShape())) {
+
+                isGameOver = true;
+                return;
+            }
+        }//end of debris for each loop
     }
 
     private void draw()
