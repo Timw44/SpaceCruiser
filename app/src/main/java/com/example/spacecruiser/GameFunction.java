@@ -116,6 +116,7 @@ public class GameFunction extends SurfaceView implements Runnable
             if(bullet.y < 0)
             {
                 dud.add(bullet);
+                bullet.x = -100;
             }
             bullet.y -= 50 * screenRatioY;
 
@@ -124,6 +125,21 @@ public class GameFunction extends SurfaceView implements Runnable
                if (Rect.intersects(enemy.getCollisionShape(), bullet.getCollisionShape()))
                 {
                     enemy.y = -500;
+                    bullet.x = -100;
+                }
+            }
+            for (Asteroids asteroid : asteroids)
+            {
+                if (Rect.intersects(asteroid.getCollisionShape(), bullet.getCollisionShape()))
+                {
+                    bullet.x = -100;
+                }
+            }
+            for (Debris deb : debris)
+            {
+                if (Rect.intersects(deb.getCollisionShape(), bullet.getCollisionShape()))
+                {
+                    deb.y = -500;
                     bullet.x = -100;
                 }
             }
