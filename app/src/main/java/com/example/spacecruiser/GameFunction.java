@@ -51,10 +51,23 @@ public class GameFunction extends SurfaceView implements Runnable
         backg2.y = 0 - screenY;
 
         enemies = new Enemy[4];
+        asteroids = new Asteroids[3];
+        debris = new Debris[3];
+
         for(int i = 0; i<enemies.length; i++)
         {
             Enemy enemy = new Enemy(getResources());
             enemies[i] = enemy;
+        }
+        for(int i = 0; i<asteroids.length; i++)
+        {
+            Asteroids asteroid = new Asteroids(getResources());
+            asteroids[i] = asteroid;
+        }
+        for(int i = 0; i<debris.length; i++)
+        {
+            Debris deb = new Debris(getResources());
+            debris[i] = deb;
         }
         random = new Random();
     }
