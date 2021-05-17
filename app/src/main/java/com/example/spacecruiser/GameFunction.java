@@ -33,6 +33,7 @@ public class GameFunction extends SurfaceView implements Runnable
     private Random random;
     private List<Bullet> bullets;
     private int screenX, screenY, score = 0;
+    private int p, a, d = 0;
     public static float screenRatioX, screenRatioY;
 
     public GameFunction(Context context, int screenX, int screenY) {
@@ -125,6 +126,7 @@ public class GameFunction extends SurfaceView implements Runnable
                if (Rect.intersects(enemy.getCollisionShape(), bullet.getCollisionShape()))
                 {
                     enemy.y = -500;
+                    enemy.x = random.nextInt(screenX - enemy.width);
                     bullet.x = -100;
                 }
             }
@@ -140,6 +142,7 @@ public class GameFunction extends SurfaceView implements Runnable
                 if (Rect.intersects(deb.getCollisionShape(), bullet.getCollisionShape()))
                 {
                     deb.y = -500;
+                    deb.x = random.nextInt(screenX - deb.width);
                     bullet.x = -100;
                 }
             }
@@ -150,7 +153,7 @@ public class GameFunction extends SurfaceView implements Runnable
         {
             enemy.y += enemy.speed;
 
-            if(enemy.y > screenY)
+            if(enemy.y > screenY || p < enemies.length)
             {
                 int bound = (int) (30 * screenRatioX);
                 enemy.speed = random.nextInt(bound);
@@ -161,6 +164,7 @@ public class GameFunction extends SurfaceView implements Runnable
 
                 enemy.y = 0;
                 enemy.x = random.nextInt(screenX - enemy.width);
+                p++;
             }
             if (Rect.intersects(enemy.getCollisionShape(), player.getCollisionShape())) {
 
@@ -173,7 +177,7 @@ public class GameFunction extends SurfaceView implements Runnable
         {
             aster.y += aster.speed;
 
-            if(aster.y > screenY)
+            if(aster.y > screenY || a < asteroids.length)
             {
                 int bound = (int) (30 * screenRatioX);
                 aster.speed = random.nextInt(bound);
@@ -184,6 +188,7 @@ public class GameFunction extends SurfaceView implements Runnable
 
                 aster.y = 0;
                 aster.x = random.nextInt(screenX - aster.width);
+                a++;
             }
             if (Rect.intersects(aster.getCollisionShape(), player.getCollisionShape())) {
 
@@ -196,7 +201,7 @@ public class GameFunction extends SurfaceView implements Runnable
         {
             deb.y += deb.speed;
 
-            if(deb.y > screenY)
+            if(deb.y > screenY || d < debris.length)
             {
                 int bound = (int) (30 * screenRatioX);
                 deb.speed = random.nextInt(bound);
@@ -207,6 +212,7 @@ public class GameFunction extends SurfaceView implements Runnable
 
                 deb.y = 0;
                 deb.x = random.nextInt(screenX - deb.width);
+                d++;
             }
             if (Rect.intersects(deb.getCollisionShape(), player.getCollisionShape())) {
 
