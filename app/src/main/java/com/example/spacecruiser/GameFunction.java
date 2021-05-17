@@ -216,6 +216,16 @@ public class GameFunction extends SurfaceView implements Runnable
                 canvas.drawBitmap(enemy.getEnemy(), enemy.x, enemy.y, paint);
             }
 
+            for (Asteroids asteroid : asteroids)
+            {
+                canvas.drawBitmap(asteroid.getAsteroid(), asteroid.x, asteroid.y, paint);
+            }
+
+            for (Debris deb : debris)
+            {
+                canvas.drawBitmap(deb.getDebris(), deb.x, deb.y, paint);
+            }
+
             getHolder().unlockCanvasAndPost(canvas);
         }
     }

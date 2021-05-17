@@ -36,7 +36,7 @@ public class Asteroids
         y = -height;
     }
 
-    Bitmap getEnemy()
+    Bitmap getAsteroid()
     {
         if (asterCounter == 1) {
             asterCounter++;

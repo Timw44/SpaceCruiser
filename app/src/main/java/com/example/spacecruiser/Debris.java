@@ -36,7 +36,7 @@ public class Debris
         y = -height;
     }
 
-    Bitmap getEnemy()
+    Bitmap getDebris()
     {
         if (debrisCounter == 1) {
             debrisCounter++;
