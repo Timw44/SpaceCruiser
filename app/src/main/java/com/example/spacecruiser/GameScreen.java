@@ -20,9 +20,9 @@ import com.example.spacecruiser.splashscreen.SplashScreen;
 public class GameScreen extends AppCompatActivity
 {
     //variables
-    private GameFunction gameFunction;
-    Button beginBtn;
-    Button backBtn;
+    static GameFunction gameFunction;
+    static Button beginBtn;
+    static Button backBtn;
     TextView intro;
     ImageView ship;
 
@@ -68,9 +68,12 @@ public class GameScreen extends AppCompatActivity
         gameFunction.start();
     }
 
-    public void endGame(View view)
+    public void endGame()
     {
-        gameFunction.stop();
+        //finish();
+        //startActivity(getIntent());
+        super.onPause();
+        //gameFunction.stop();
         beginBtn.setText("Play Again");
         beginBtn.setVisibility(View.VISIBLE);
         backBtn.setVisibility(View.VISIBLE);

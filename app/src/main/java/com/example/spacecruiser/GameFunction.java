@@ -1,11 +1,13 @@
 package com.example.spacecruiser;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.preference.Preference;
 import android.view.MotionEvent;
@@ -38,12 +40,13 @@ public class GameFunction extends SurfaceView implements Runnable
     private int screenX, screenY, score = 0;
     private int p, a, d = 0;
     private SharedPreferences prefs;
+    private GameScreen activity;
     public static float screenRatioX, screenRatioY;
 
-    public GameFunction(Context context, int screenX, int screenY) {
-        super(context);
+    public GameFunction(GameScreen activity, int screenX, int screenY) {
+        super(activity);
 
-        prefs = context.getSharedPreferences("game", Context.MODE_PRIVATE);
+        prefs = activity.getSharedPreferences("game", Context.MODE_PRIVATE);
 
         this.screenX = screenX;
         this.screenY = screenY;
@@ -261,6 +264,7 @@ public class GameFunction extends SurfaceView implements Runnable
                 isPlaying = false;//ends game
                 isHighScore();
                 waitToExit();
+                //canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
                 getHolder().unlockCanvasAndPost(canvas);
                 return;
             }
@@ -305,7 +309,9 @@ public class GameFunction extends SurfaceView implements Runnable
     {
         try {
             Thread.sleep(3000);
-
+            //reload main screen
+            activity.startActivity(new Intent(activity, MainActivity.class));
+            activity.finish();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
