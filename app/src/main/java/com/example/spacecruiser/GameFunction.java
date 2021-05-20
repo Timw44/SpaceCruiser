@@ -265,7 +265,10 @@ public class GameFunction extends SurfaceView implements Runnable
                 return;
             }
 
-            canvas.drawText(score + "", screenX/2f, 100, paint);
+            paint.setColor(Color.WHITE);
+            canvas.drawText(score + "", screenX/2f + 50, 100, paint);
+            paint.setColor(Color.YELLOW);
+            canvas.drawText("Score: ", screenX/2f - 100, 100, paint);
 
             canvas.drawBitmap(player.getPlayer(), player.x, player.y+500, paint);
             canvas.drawBitmap(player.spaceShip, player.x, player.y, paint);

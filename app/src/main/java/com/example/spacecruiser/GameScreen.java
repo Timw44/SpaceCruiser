@@ -68,6 +68,7 @@ public class GameScreen extends AppCompatActivity
         gameFunction.start();
     }
 
+
     public void backToMainMenu(View view)
     {
         finish();
