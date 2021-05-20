@@ -70,6 +70,6 @@ public class Player
 
     Rect getCollisionShape()
     {
-        return new Rect(x, y, x + width, y + height);
+        return new Rect(x, y, (x + width)/2, (y + height)/2);
     }
 }
