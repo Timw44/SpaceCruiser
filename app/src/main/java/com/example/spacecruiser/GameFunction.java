@@ -1,11 +1,13 @@
 package com.example.spacecruiser;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.preference.Preference;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
 import android.view.View;
@@ -35,10 +37,13 @@ public class GameFunction extends SurfaceView implements Runnable
     private List<Bullet> bullets;
     private int screenX, screenY, score = 0;
     private int p, a, d = 0;
+    private SharedPreferences prefs;
     public static float screenRatioX, screenRatioY;
 
     public GameFunction(Context context, int screenX, int screenY) {
         super(context);
+
+        prefs = context.getSharedPreferences("game", Context.MODE_PRIVATE);
 
         this.screenX = screenX;
         this.screenY = screenY;
@@ -254,6 +259,8 @@ public class GameFunction extends SurfaceView implements Runnable
             if(isGameOver)
             {
                 isPlaying = false;//ends game
+                isHighScore();
+                waitToExit();
                 getHolder().unlockCanvasAndPost(canvas);
                 return;
             }
@@ -290,6 +297,16 @@ public class GameFunction extends SurfaceView implements Runnable
             getHolder().unlockCanvasAndPost(canvas);
         }
     }
+
+    private void waitToExit()
+    {
+        try {
+            Thread.sleep(3000);
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }// leaves game after death
 
     private void hold()
     {
@@ -345,5 +362,15 @@ public class GameFunction extends SurfaceView implements Runnable
         bullet.x = player.x + (player.width / 2);
         bullet.y = player.y;
         bullets.add(bullet);
+    }
+
+    private void isHighScore()
+    {
+        if(score > prefs.getInt("highscore", 0))
+        {
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putInt("highscore", score);
+            editor.apply();
+        }
     }
 }
