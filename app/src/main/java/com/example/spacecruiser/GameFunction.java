@@ -3,6 +3,7 @@ package com.example.spacecruiser;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.view.MotionEvent;
@@ -50,6 +51,10 @@ public class GameFunction extends SurfaceView implements Runnable
         backg1 = new Background(screenX, screenY, getResources());
         backg2 = new Background(screenX, screenY, getResources());
         backg2.y = 0 - screenY;
+
+        paint = new Paint();
+        paint.setTextSize(48);
+        paint.setColor(Color.WHITE);
 
         enemies = new Enemy[4];
         asteroids = new Asteroids[3];
@@ -125,6 +130,7 @@ public class GameFunction extends SurfaceView implements Runnable
             {
                if (Rect.intersects(enemy.getCollisionShape(), bullet.getCollisionShape()))
                 {
+                    score += 2;
                     int bound = (int) (30 * screenRatioX);
                     enemy.speed = random.nextInt(bound);
 
@@ -147,6 +153,7 @@ public class GameFunction extends SurfaceView implements Runnable
             {
                 if (Rect.intersects(deb.getCollisionShape(), bullet.getCollisionShape()))
                 {
+                    score++;
                     int bound = (int) (20 * screenRatioX);
                     deb.speed = random.nextInt(bound);
 
@@ -250,6 +257,8 @@ public class GameFunction extends SurfaceView implements Runnable
                 getHolder().unlockCanvasAndPost(canvas);
                 return;
             }
+
+            canvas.drawText(score + "", screenX/2f, 100, paint);
 
             canvas.drawBitmap(player.getPlayer(), player.x, player.y+500, paint);
             canvas.drawBitmap(player.spaceShip, player.x, player.y, paint);
