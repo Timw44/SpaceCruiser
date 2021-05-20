@@ -125,7 +125,7 @@ public class GameFunction extends SurfaceView implements Runnable
             {
                if (Rect.intersects(enemy.getCollisionShape(), bullet.getCollisionShape()))
                 {
-                    enemy.y = -500;
+                    enemy.y = random.nextInt(-1000);
                     enemy.x = random.nextInt(screenX - enemy.width);
                     bullet.x = -100;
                 }
@@ -141,7 +141,7 @@ public class GameFunction extends SurfaceView implements Runnable
             {
                 if (Rect.intersects(deb.getCollisionShape(), bullet.getCollisionShape()))
                 {
-                    deb.y = -500;
+                    deb.y = random.nextInt(-700);
                     deb.x = random.nextInt(screenX - deb.width);
                     bullet.x = -100;
                 }
@@ -162,7 +162,7 @@ public class GameFunction extends SurfaceView implements Runnable
                     enemy.speed = (int) (10 * screenRatioX);
                 }
 
-                enemy.y = 0;
+                enemy.y = random.nextInt(-1000);
                 enemy.x = random.nextInt(screenX - enemy.width);
                 p++;
             }
@@ -186,7 +186,7 @@ public class GameFunction extends SurfaceView implements Runnable
                     aster.speed = (int) (10 * screenRatioX);
                 }
 
-                aster.y = 0;
+                aster.y = random.nextInt(-300);
                 aster.x = random.nextInt(screenX - aster.width);
                 a++;
             }
@@ -210,7 +210,7 @@ public class GameFunction extends SurfaceView implements Runnable
                     deb.speed = (int) (10 * screenRatioX);
                 }
 
-                deb.y = 0;
+                deb.y = random.nextInt(-700);
                 deb.x = random.nextInt(screenX - deb.width);
                 d++;
             }
@@ -220,6 +220,7 @@ public class GameFunction extends SurfaceView implements Runnable
                 return;
             }
         }//end of debris for each loop
+        dud.removeAll(bullets);//removes dud bullets
     }
 
     private void draw()
@@ -284,7 +285,7 @@ public class GameFunction extends SurfaceView implements Runnable
     public void stop()
     {
         try {
-            isPlaying = true;
+            isPlaying = false;
             thread.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
