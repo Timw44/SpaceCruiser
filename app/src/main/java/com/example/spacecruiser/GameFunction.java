@@ -102,11 +102,11 @@ public class GameFunction extends SurfaceView implements Runnable
         //moves player and checks that they don't leave the screen
         if(player.isMovingRight && player.x <= screenX - player.width)
         {
-            player.x += 20;
+            player.x += 25;
         }
         if(player.isMovingLeft && player.x > 0)
         {
-            player.x -= 20;
+            player.x -= 25;
         }
 
         //makes bullets and deletes them
@@ -119,13 +119,13 @@ public class GameFunction extends SurfaceView implements Runnable
                 dud.add(bullet);
                 bullet.x = -100;
             }
-            bullet.y -= 50 * screenRatioY;
+            bullet.y -= 100 * screenRatioY;
 
             for (Enemy enemy : enemies)
             {
                if (Rect.intersects(enemy.getCollisionShape(), bullet.getCollisionShape()))
                 {
-                    enemy.y = random.nextInt(-1000);
+                    enemy.y = 0 - random.nextInt(1000);
                     enemy.x = random.nextInt(screenX - enemy.width);
                     bullet.x = -100;
                 }
@@ -141,7 +141,7 @@ public class GameFunction extends SurfaceView implements Runnable
             {
                 if (Rect.intersects(deb.getCollisionShape(), bullet.getCollisionShape()))
                 {
-                    deb.y = random.nextInt(-700);
+                    deb.y = 0 - random.nextInt(700);
                     deb.x = random.nextInt(screenX - deb.width);
                     bullet.x = -100;
                 }
@@ -162,7 +162,7 @@ public class GameFunction extends SurfaceView implements Runnable
                     enemy.speed = (int) (10 * screenRatioX);
                 }
 
-                enemy.y = random.nextInt(-1000);
+                enemy.y = 0 - random.nextInt(1000);
                 enemy.x = random.nextInt(screenX - enemy.width);
                 p++;
             }
@@ -186,7 +186,7 @@ public class GameFunction extends SurfaceView implements Runnable
                     aster.speed = (int) (10 * screenRatioX);
                 }
 
-                aster.y = random.nextInt(-300);
+                aster.y = 0 - random.nextInt(300);
                 aster.x = random.nextInt(screenX - aster.width);
                 a++;
             }
@@ -210,7 +210,7 @@ public class GameFunction extends SurfaceView implements Runnable
                     deb.speed = (int) (10 * screenRatioX);
                 }
 
-                deb.y = random.nextInt(-700);
+                deb.y = 0 - random.nextInt(700);
                 deb.x = random.nextInt(screenX - deb.width);
                 d++;
             }
@@ -257,10 +257,14 @@ public class GameFunction extends SurfaceView implements Runnable
                 canvas.drawBitmap(asteroid.getAsteroid(), asteroid.x, asteroid.y, paint);
             }
 
-            for (Debris deb : debris)
-            {
-                canvas.drawBitmap(deb.getDebris(), deb.x, deb.y, paint);
-            }
+            canvas.drawBitmap(debris[0].getDebris1(), debris[0].x, debris[0].y, paint);
+            canvas.drawBitmap(debris[1].getDebris2(), debris[1].x, debris[1].y, paint);
+            canvas.drawBitmap(debris[2].getDebris3(), debris[2].x, debris[2].y, paint);
+
+//            for (int i = 0; i<debris.length; i++)
+//            {
+//                canvas.drawBitmap(debris[i].getDebris1(), debris[i].x, debris[i].y, paint);
+//            }
 
             getHolder().unlockCanvasAndPost(canvas);
         }

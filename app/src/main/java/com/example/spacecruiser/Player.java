@@ -48,7 +48,7 @@ public class Player
     }
 
     Bitmap getPlayer() {
-        if (shoot % 20 == 0) {
+        if (shoot % 15 == 0) {
 
             gameFunction.newBullet();
             if (shotCounter == 1) {
@@ -70,6 +70,6 @@ public class Player
 
     Rect getCollisionShape()
     {
-        return new Rect(x, y, (x + width)/2, (y + height)/2);
+        return new Rect(x, y, x + width/2, y + height/2);
     }
 }

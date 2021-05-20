@@ -36,20 +36,30 @@ public class Debris
         y = -height;
     }
 
-    Bitmap getDebris()
+    Bitmap getDebris1()
     {
-        if (debrisCounter == 1) {
-            debrisCounter++;
-            return debris1;
-        }
+//        if (debrisCounter == 1) {
+//            debrisCounter++;
+//            return debris1;
+//        }
+//
+//        if (debrisCounter == 2) {
+//            debrisCounter++;
+//            return debris2;
+//        }
+//
+//        debrisCounter = 1;
 
-        if (debrisCounter == 2) {
-            debrisCounter++;
-            return debris2;
-        }
+        return debris1;
+    }
 
-        debrisCounter = 1;
+    Bitmap getDebris2()
+    {
+        return debris2;
+    }
 
+    Bitmap getDebris3()
+    {
         return debris3;
     }
 
