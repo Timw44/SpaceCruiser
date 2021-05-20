@@ -68,6 +68,13 @@ public class GameScreen extends AppCompatActivity
         gameFunction.start();
     }
 
+    public void endGame(View view)
+    {
+        gameFunction.stop();
+        beginBtn.setText("Play Again");
+        beginBtn.setVisibility(View.VISIBLE);
+        backBtn.setVisibility(View.VISIBLE);
+    }
 
     public void backToMainMenu(View view)
     {
