@@ -40,13 +40,15 @@ public class GameFunction extends SurfaceView implements Runnable
     private int screenX, screenY, score = 0;
     private int p, a, d = 0;
     private SharedPreferences prefs;
-    private GameScreen activity;
+    public GameScreen activity;
     public static float screenRatioX, screenRatioY;
 
     public GameFunction(GameScreen activity, int screenX, int screenY) {
         super(activity);
 
         prefs = activity.getSharedPreferences("game", Context.MODE_PRIVATE);
+
+        this.activity = activity;
 
         this.screenX = screenX;
         this.screenY = screenY;
@@ -375,10 +377,10 @@ public class GameFunction extends SurfaceView implements Runnable
 
     private void isHighScore()
     {
-        if(score > prefs.getInt("highscore", 0))
+        if(score > prefs.getInt("highscore1", 0))
         {
             SharedPreferences.Editor editor = prefs.edit();
-            editor.putInt("highscore", score);
+            editor.putInt("highscore1", score);
             editor.apply();
         }
     }

@@ -38,11 +38,15 @@ public class GameScreen extends AppCompatActivity
 
         highScoreTX = findViewById(R.id.personalHSTX);
         SharedPreferences prefs = getSharedPreferences("game", MODE_PRIVATE);
+        highScoreTX.setText("" + prefs.getInt("highscore2", 0));
 
 
-        if(prefs.getInt("highscore", 0) != Integer.parseInt(highScoreTX.getText().toString()))
+        if(prefs.getInt("highscore1", 0) != prefs.getInt("highscore2", 0))
         {
-            highScoreTX.setText("" + prefs.getInt("highscore", 0));
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putInt("highscore2", prefs.getInt("highscore1", 0));
+            editor.apply();
+            highScoreTX.setText("" + prefs.getInt("highscore1", 0));
             endGame();
         }
 
