@@ -105,17 +105,37 @@ hazardous debris and rouge UFOs. Good Luck!"
         app:srcCompat="@drawable/spacecrusier" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/shipET"
         android:layout_width="154dp"
         android:layout_height="74dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:text="Enter"
+        android:textColor="@color/tan"
+        android:textSize="22dp"
+
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.566" />
+        app:layout_constraintVertical_bias="0.566"
+        android:gravity="center_horizontal" />
+
+    <TextView
+        android:id="@+id/nameTX"
+        android:layout_width="211dp"
+        android:layout_height="43dp"
+        android:text="Flight Name:"
+        android:textAlignment="center"
+        android:textColor="@color/gold"
+        android:textSize="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.441"
+        android:gravity="center_horizontal" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
