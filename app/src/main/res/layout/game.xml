@@ -54,43 +54,42 @@ hazardous debris and rouge UFOs. Good Luck!"
         android:textSize="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.533"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.213" />
+        app:layout_constraintVertical_bias="0.126" />
 
     <Button
         android:id="@+id/beginBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Begin"
         android:background="@android:color/transparent"
+        android:onClick="startGame"
+        android:text="Begin"
         android:textColor="@color/tan"
         android:textSize="30sp"
         android:textStyle="normal"
-        android:onClick="startGame"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/introTX"
-        app:layout_constraintVertical_bias="0.13" />
+        app:layout_constraintVertical_bias="0.525" />
 
     <Button
         android:id="@+id/backGameBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
+        android:onClick="backToMainMenu"
         android:text="Main Menu"
         android:textColor="@color/tan"
         android:textSize="30sp"
         android:textStyle="normal"
-        android:onClick="backToMainMenu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/introTX"
-        app:layout_constraintVertical_bias="0.409" />
+        app:layout_constraintVertical_bias="0.763" />
 
     <ImageView
         android:id="@+id/SpaceCruiser"
@@ -105,5 +104,18 @@ hazardous debris and rouge UFOs. Good Luck!"
         app:layout_constraintVertical_bias="0.913"
         app:srcCompat="@drawable/spacecrusier" />
 
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="154dp"
+        android:layout_height="74dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.566" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
