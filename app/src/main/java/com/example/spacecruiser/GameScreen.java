@@ -2,6 +2,7 @@ package com.example.spacecruiser;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -20,11 +21,13 @@ import com.example.spacecruiser.splashscreen.SplashScreen;
 public class GameScreen extends AppCompatActivity
 {
     //variables
-    static GameFunction gameFunction;
-    static Button beginBtn;
-    static Button backBtn;
+    GameFunction gameFunction;
+    Button beginBtn;
+    Button backBtn;
     TextView intro;
     ImageView ship;
+    TextView highScoreTX;
+
 
 
     @Override
@@ -33,11 +36,25 @@ public class GameScreen extends AppCompatActivity
         setContentView(R.layout.game);
         getSupportActionBar().hide();
 
+        highScoreTX = findViewById(R.id.personalHSTX);
+        SharedPreferences prefs = getSharedPreferences("game", MODE_PRIVATE);
+
+
+        if(prefs.getInt("highscore", 0) != Integer.parseInt(highScoreTX.getText().toString()))
+        {
+            highScoreTX.setText("" + prefs.getInt("highscore", 0));
+            endGame();
+        }
+
+
         Point point = new Point();
         getWindowManager().getDefaultDisplay().getSize(point);
 
         gameFunction = new GameFunction(this, point.x, point.y);
     }
+
+
+
 
 //    @Override
 //    protected void onPause() {
@@ -70,11 +87,15 @@ public class GameScreen extends AppCompatActivity
 
     public void endGame()
     {
+        beginBtn = (Button) findViewById(R.id.beginBtn);
+        backBtn = (Button) findViewById(R.id.backGameBtn);
+        intro = (TextView) findViewById(R.id.introTX);
         //finish();
         //startActivity(getIntent());
-        super.onPause();
+        //super.onPause();
         //gameFunction.stop();
         beginBtn.setText("Play Again");
+        intro.setVisibility(View.GONE);
         beginBtn.setVisibility(View.VISIBLE);
         backBtn.setVisibility(View.VISIBLE);
     }

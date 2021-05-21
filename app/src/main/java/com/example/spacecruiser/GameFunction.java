@@ -310,8 +310,8 @@ public class GameFunction extends SurfaceView implements Runnable
         try {
             Thread.sleep(3000);
             //reload main screen
-            activity.startActivity(new Intent(activity, MainActivity.class));
             activity.finish();
+            activity.startActivity(new Intent(activity, GameScreen.class));
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
