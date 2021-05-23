@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.spacecruiser.splashscreen.SplashScreen;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class GameScreen extends AppCompatActivity
@@ -29,7 +30,10 @@ public class GameScreen extends AppCompatActivity
     TextView intro;
     ImageView ship;
     TextView highScoreTX;
-    FirebaseDatabase database;
+    EditText flightName;
+    int highScore;
+    static FirebaseDatabase database;
+    static DatabaseReference reference;
 
 
 
@@ -39,19 +43,21 @@ public class GameScreen extends AppCompatActivity
         setContentView(R.layout.game);
         getSupportActionBar().hide();
 
-        //database = new FirebaseDatabase();
+        database = FirebaseDatabase.getInstance();
 
         highScoreTX = findViewById(R.id.personalHSTX);
         SharedPreferences prefs = getSharedPreferences("game", MODE_PRIVATE);
         highScoreTX.setText("" + prefs.getInt("highscore2", 0));
 
 
-        if(prefs.getInt("highscore1", 0) != prefs.getInt("highscore2", 0))
+        if(prefs.getInt("highscore1", 0) > prefs.getInt("highscore2", 0))
         {
             SharedPreferences.Editor editor = prefs.edit();
             editor.putInt("highscore2", prefs.getInt("highscore1", 0));
             editor.apply();
             highScoreTX.setText("" + prefs.getInt("highscore1", 0));
+        }
+        else{
             endGame();
         }
 
@@ -80,10 +86,18 @@ public class GameScreen extends AppCompatActivity
 
     public void startGame(View view)
     {
+        SharedPreferences prefs = getSharedPreferences("game", MODE_PRIVATE);
         beginBtn = (Button) findViewById(R.id.beginBtn);
         backBtn = (Button) findViewById(R.id.backGameBtn);
         intro = (TextView) findViewById(R.id.introTX);
         ship = (ImageView) findViewById(R.id.SpaceCruiser);
+        flightName = (EditText) findViewById(R.id.shipET);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("Flight", flightName.toString());
+        editor.apply();
+        //highScore = prefs.getInt("highscore1", 0);
+        //reference = database.getReference("Flight");
+        //reference.child(flightName.toString()).setValue(flightName.toString(), highScore);
 
         beginBtn.setVisibility(View.GONE);
         backBtn.setVisibility(View.GONE);
