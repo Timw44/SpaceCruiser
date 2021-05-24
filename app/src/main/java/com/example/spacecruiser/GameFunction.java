@@ -320,7 +320,7 @@ public class GameFunction extends SurfaceView implements Runnable
             String name = flightName.getText().toString();
 
             reference = database.getReference("Flight");
-            reference.child(name).setValue(high);
+            reference.child(high).setValue(name);
 
             //reload main screen
             activity.finish();
