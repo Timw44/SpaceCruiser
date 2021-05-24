@@ -25,6 +25,22 @@
         app:layout_constraintVertical_bias="0.056" />
 
     <TextView
+        android:id="@+id/firstTX"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="1st "
+        android:textAlignment="center"
+        android:textColor="@color/gold"
+        android:textSize="46dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.098"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.422" />
+
+    <TextView
         android:id="@+id/highNameTX"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -32,13 +48,13 @@
         android:text="- - -"
         android:textAlignment="center"
         android:textColor="@color/gold"
-        android:textSize="46dp"
+        android:textSize="56dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.436"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.225" />
+        app:layout_constraintVertical_bias="0.41" />
 
     <TextView
         android:id="@+id/highValueTX"
@@ -51,10 +67,10 @@
         android:textSize="46dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.755"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.428" />
+        app:layout_constraintVertical_bias="0.422" />
 
     <TextView
         android:id="@+id/scoreTX1"
@@ -232,16 +248,16 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:text="- - -"
-        android:visibility="invisible"
         android:textAlignment="center"
         android:textColor="@color/yellow"
         android:textSize="28dp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.328"
+        app:layout_constraintHorizontal_bias="0.451"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.388" />
+        app:layout_constraintVertical_bias="0.379" />
 
     <TextView
         android:id="@+id/scoreTX4Key"

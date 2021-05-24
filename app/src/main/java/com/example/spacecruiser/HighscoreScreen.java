@@ -25,7 +25,7 @@ public class HighscoreScreen extends AppCompatActivity
 {
     //variables
     TextView firstK, secondK, thirdK, fourthK, fifthK, sixthK, seventhK, eighthK, ninthK, tenthK,
-             firstV, secondV, thirdV, fourthV, fifthV, sixthV, seventhV, eighthV, ninthV, tenthV;
+             firstV, secondV, thirdV, fourthV, fifthV, sixthV, seventhV, eighthV, ninthV, tenthV, topN, topS;
     TextView[] positions = new TextView[10];
     TextView[] names = new TextView[10];
     String[] keys = new String[10];
@@ -72,7 +72,7 @@ public class HighscoreScreen extends AppCompatActivity
         ninthV = (TextView) findViewById(R.id.scoreTX9Value);
         tenthV = (TextView) findViewById(R.id.scoreTX10Value);*/
 
-        Query queryRef = reference.orderByKey().limitToLast(10);
+        Query queryRef = reference.orderByKey().limitToLast(1);
 
         queryRef.addChildEventListener(new ChildEventListener() {
             @Override
@@ -149,20 +149,26 @@ public class HighscoreScreen extends AppCompatActivity
         names[7] = findViewById(R.id.scoreTX8Value);
         names[8] = findViewById(R.id.scoreTX9Value);
         names[9] = findViewById(R.id.scoreTX10Value);
+        topN = (TextView) findViewById(R.id.highNameTX);
+        topS = (TextView) findViewById(R.id.highValueTX);
     }
 
     public void sort(int value, String name)
     {
         for (int i = 0; i<positions.length; i++)
         {
-            if(value > Integer.parseInt(positions[i].getText().toString())) {
-                positions[i].setText(value + "");
-                names[i].setText(name);
-            }
-            if(checkRepeat(name))
-            {
-                break;
-            }
+            topS.setText(value + "");
+            topN.setText(name);
+
+//            if(value > Integer.parseInt(positions[i].getText().toString())) {
+//                positions[i].setText(value + "");
+//                names[i].setText(name);
+//            }
+//
+//            if(checkRepeat(name))
+//            {
+//                break;
+//            }
         }
     }
 
