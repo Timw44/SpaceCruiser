@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "951801205757",
+    "project_id": "space-cruiser-41e96",
+    "storage_bucket": "space-cruiser-41e96.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:951801205757:android:80fe56123cddc84236bf94",
+        "android_client_info": {
+          "package_name": "com.example.spacecruiser"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "951801205757-u1q1dnn6e9n3hnvrpe6ms9ua84jga6h1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLm8mzB1moHSgK9wpyF59pNKoT_fX-9z4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "951801205757-u1q1dnn6e9n3hnvrpe6ms9ua84jga6h1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

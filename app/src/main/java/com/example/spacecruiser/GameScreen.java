@@ -9,6 +9,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -17,6 +18,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.spacecruiser.splashscreen.SplashScreen;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class GameScreen extends AppCompatActivity
 {
@@ -27,6 +30,9 @@ public class GameScreen extends AppCompatActivity
     TextView intro;
     ImageView ship;
     TextView highScoreTX;
+    static EditText flightName;
+    static FirebaseDatabase database;
+    static DatabaseReference reference;
 
 
 
@@ -35,6 +41,8 @@ public class GameScreen extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game);
         getSupportActionBar().hide();
+
+        database = FirebaseDatabase.getInstance();
 
         highScoreTX = findViewById(R.id.personalHSTX);
         SharedPreferences prefs = getSharedPreferences("game", MODE_PRIVATE);
@@ -75,10 +83,12 @@ public class GameScreen extends AppCompatActivity
 
     public void startGame(View view)
     {
+        SharedPreferences prefs = getSharedPreferences("game", MODE_PRIVATE);
         beginBtn = (Button) findViewById(R.id.beginBtn);
         backBtn = (Button) findViewById(R.id.backGameBtn);
         intro = (TextView) findViewById(R.id.introTX);
         ship = (ImageView) findViewById(R.id.SpaceCruiser);
+        flightName = (EditText) findViewById(R.id.shipET);
 
         beginBtn.setVisibility(View.GONE);
         backBtn.setVisibility(View.GONE);
@@ -94,10 +104,7 @@ public class GameScreen extends AppCompatActivity
         beginBtn = (Button) findViewById(R.id.beginBtn);
         backBtn = (Button) findViewById(R.id.backGameBtn);
         intro = (TextView) findViewById(R.id.introTX);
-        //finish();
-        //startActivity(getIntent());
-        //super.onPause();
-        //gameFunction.stop();
+
         beginBtn.setText("Play Again");
         intro.setVisibility(View.GONE);
         beginBtn.setVisibility(View.VISIBLE);
