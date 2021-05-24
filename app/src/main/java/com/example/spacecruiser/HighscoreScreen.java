@@ -1,6 +1,7 @@
 package com.example.spacecruiser;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
@@ -14,6 +15,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.core.EventRegistration;
 
 import org.w3c.dom.Text;
 
@@ -26,9 +28,10 @@ public class HighscoreScreen extends AppCompatActivity
              firstV, secondV, thirdV, fourthV, fifthV, sixthV, seventhV, eighthV, ninthV, tenthV;
     TextView[] positions = new TextView[10];
     TextView[] names = new TextView[10];
-    //ArrayList<String> keys;
+    String[] keys = new String[10];
     FirebaseDatabase database;
     DatabaseReference reference;
+    int[] top10 = new int[10];
     //ArrayList<DatabaseReference> refs;
 
     @Override
@@ -69,27 +72,29 @@ public class HighscoreScreen extends AppCompatActivity
         ninthV = (TextView) findViewById(R.id.scoreTX9Value);
         tenthV = (TextView) findViewById(R.id.scoreTX10Value);*/
 
-        //Query queryRef = reference.orderByKey().limitToLast(10);
+        Query queryRef = reference.orderByKey().limitToLast(10);
 
-        reference.orderByKey().limitToLast(10).addChildEventListener(new ChildEventListener() {
+        queryRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                //long count = snapshot.getChildrenCount();
                 sort(Integer.parseInt(snapshot.getKey()), snapshot.getValue().toString());
+                //System.out.println(count);
             }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                sort(Integer.parseInt(snapshot.getKey()), snapshot.getValue().toString());
+                //sort(Integer.parseInt(snapshot.getKey()), snapshot.getValue().toString());
             }
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-                sort(Integer.parseInt(snapshot.getKey()), snapshot.getValue().toString());
+                //sort(Integer.parseInt(snapshot.getKey()), snapshot.getValue().toString());
             }
 
             @Override
             public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                sort(Integer.parseInt(snapshot.getKey()), snapshot.getValue().toString());
+               // sort(Integer.parseInt(snapshot.getKey()), snapshot.getValue().toString());
             }
 
             @Override
@@ -148,16 +153,29 @@ public class HighscoreScreen extends AppCompatActivity
 
     public void sort(int value, String name)
     {
-        for (int i = 0; i<positions.length-1; i++)
+        for (int i = 0; i<positions.length; i++)
         {
-            if(value > Integer.parseInt(positions[i].getText().toString()))
-            {
-                positions[i+1].setText(positions[i].getText());
-                names[i+1].setText(names[i].getText());
+            if(value > Integer.parseInt(positions[i].getText().toString())) {
                 positions[i].setText(value + "");
                 names[i].setText(name);
             }
+            if(checkRepeat(name))
+            {
+                break;
+            }
         }
+    }
+
+    public boolean checkRepeat(String name)
+    {
+        for (int i = 0; i<names.length; i++)
+        {
+            if(name.equals(names[i].getText().toString()))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
 
