@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Random;
 
 import static com.example.spacecruiser.GameScreen.database;
+import static com.example.spacecruiser.GameScreen.flightName;
 import static com.example.spacecruiser.GameScreen.reference;
 
 
@@ -315,8 +316,11 @@ public class GameFunction extends SurfaceView implements Runnable
         try {
             Thread.sleep(3000);
             //save flight in data base
+            String high = (score + "");
+            String name = flightName.getText().toString();
+
             reference = database.getReference("Flight");
-            reference.child(prefs.getString("Flight", "")).setValue(prefs.getString("Flight", ""), score);
+            reference.child(name).setValue(high);
 
             //reload main screen
             activity.finish();

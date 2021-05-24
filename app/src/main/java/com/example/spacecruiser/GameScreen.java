@@ -30,8 +30,7 @@ public class GameScreen extends AppCompatActivity
     TextView intro;
     ImageView ship;
     TextView highScoreTX;
-    EditText flightName;
-    int highScore;
+    static EditText flightName;
     static FirebaseDatabase database;
     static DatabaseReference reference;
 
@@ -50,14 +49,12 @@ public class GameScreen extends AppCompatActivity
         highScoreTX.setText("" + prefs.getInt("highscore2", 0));
 
 
-        if(prefs.getInt("highscore1", 0) > prefs.getInt("highscore2", 0))
+        if(prefs.getInt("highscore1", 0) != prefs.getInt("highscore2", 0))
         {
             SharedPreferences.Editor editor = prefs.edit();
             editor.putInt("highscore2", prefs.getInt("highscore1", 0));
             editor.apply();
             highScoreTX.setText("" + prefs.getInt("highscore1", 0));
-        }
-        else{
             endGame();
         }
 
@@ -92,12 +89,6 @@ public class GameScreen extends AppCompatActivity
         intro = (TextView) findViewById(R.id.introTX);
         ship = (ImageView) findViewById(R.id.SpaceCruiser);
         flightName = (EditText) findViewById(R.id.shipET);
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putString("Flight", flightName.toString());
-        editor.apply();
-        //highScore = prefs.getInt("highscore1", 0);
-        //reference = database.getReference("Flight");
-        //reference.child(flightName.toString()).setValue(flightName.toString(), highScore);
 
         beginBtn.setVisibility(View.GONE);
         backBtn.setVisibility(View.GONE);
