@@ -10,12 +10,13 @@ import static com.example.spacecruiser.GameFunction.screenRatioY;
 
 public class Enemy
 {
+    //variables
     public int speed = 20;
     int x = 0, y, width, height, enemyCounter = 1;
     Bitmap alien1, alien2, alien3, alien4;
 
     Enemy (Resources res) {
-
+//alien ship fields
         alien1 = BitmapFactory.decodeResource(res, R.drawable.ufo);
         alien2 = BitmapFactory.decodeResource(res, R.drawable.ufo);
         alien3 = BitmapFactory.decodeResource(res, R.drawable.ufo);
@@ -38,6 +39,7 @@ public class Enemy
         y = -height;
     }
 
+    //used to draw each ufo
     Bitmap getEnemy()
     {
         if (enemyCounter == 1) {
@@ -60,6 +62,7 @@ public class Enemy
         return alien4;
     }
 
+    //hit box
     Rect getCollisionShape()
     {
         return new Rect(x, y, x + width, y + height);

@@ -47,6 +47,7 @@ public class GameFunction extends SurfaceView implements Runnable
     public GameScreen activity;
     public static float screenRatioX, screenRatioY;
 
+    //constructor
     public GameFunction(GameScreen activity, int screenX, int screenY) {
         super(activity);
 
@@ -93,7 +94,7 @@ public class GameFunction extends SurfaceView implements Runnable
     }
 
 
-
+//when is playing is true the game progresses
     @Override
     public void run() {
         while(isPlaying)
@@ -104,6 +105,7 @@ public class GameFunction extends SurfaceView implements Runnable
         }
     }
 
+    //calls every few milli seconds to make the illusion of motion
     private void update()
     {
         //moves background
@@ -265,6 +267,7 @@ public class GameFunction extends SurfaceView implements Runnable
             canvas.drawBitmap(backg1.background, backg1.x, backg1.y, paint);
             canvas.drawBitmap(backg2.background, backg2.x, backg2.y, paint);
 
+            //checks if game is over to delete the canvas
             if(isGameOver)
             {
                 isPlaying = false;//ends game
@@ -302,11 +305,6 @@ public class GameFunction extends SurfaceView implements Runnable
             canvas.drawBitmap(debris[1].getDebris2(), debris[1].x, debris[1].y, paint);
             canvas.drawBitmap(debris[2].getDebris3(), debris[2].x, debris[2].y, paint);
 
-//            for (int i = 0; i<debris.length; i++)
-//            {
-//                canvas.drawBitmap(debris[i].getDebris1(), debris[i].x, debris[i].y, paint);
-//            }
-
             getHolder().unlockCanvasAndPost(canvas);
         }
     }
@@ -330,6 +328,7 @@ public class GameFunction extends SurfaceView implements Runnable
         }
     }// leaves game after death
 
+    //spaces the updates
     private void hold()
     {
         try {
@@ -339,6 +338,7 @@ public class GameFunction extends SurfaceView implements Runnable
         }
     }
 
+    //starts the run function
     public void start()
     {
         isPlaying = true;
@@ -346,6 +346,7 @@ public class GameFunction extends SurfaceView implements Runnable
         thread.start();
     }
 
+    //ends run function
     public void stop()
     {
         try {
@@ -356,6 +357,7 @@ public class GameFunction extends SurfaceView implements Runnable
         }
     }
 
+    //handles when the player touches to move
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
@@ -367,17 +369,16 @@ public class GameFunction extends SurfaceView implements Runnable
                 else {
                     player.isMovingRight = true;
                 }
-                //player.shoot = 1;
                 break;
             case MotionEvent.ACTION_UP:
                 player.isMovingLeft = false;
                 player.isMovingRight = false;
-                //player.shoot = 0;
                 break;
         }
         return true;
     }
 
+    //creates a new bullet
     public void newBullet()
     {
         Bullet bullet = new Bullet(getResources());
@@ -386,6 +387,7 @@ public class GameFunction extends SurfaceView implements Runnable
         bullets.add(bullet);
     }
 
+    //checks if the score was the high score and saves it if true
     private void isHighScore()
     {
         if(score > prefs.getInt("highscore1", 0))

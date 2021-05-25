@@ -10,7 +10,7 @@ import static com.example.spacecruiser.GameFunction.screenRatioY;
 
 
 public class Bullet {
-
+//variables
     int x, y, width, height;
     Bitmap bullet;
 
@@ -31,6 +31,7 @@ public class Bullet {
 
     }
 
+    //hit box
     Rect getCollisionShape () {
         return new Rect(x, y, x + width, y + height);
     }

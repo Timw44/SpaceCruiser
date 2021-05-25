@@ -17,6 +17,7 @@ public class SplashScreen extends AppCompatActivity
         setContentView(R.layout.splash);
         getSupportActionBar().hide();
 
+        //displays this activity when app is opened
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

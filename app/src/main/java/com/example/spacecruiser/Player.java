@@ -10,6 +10,7 @@ import static com.example.spacecruiser.GameFunction.screenRatioY;
 
 public class Player
 {
+    //variables
     boolean isMovingLeft, isMovingRight = false;
     int shoot = 0;
     int x, y, width, height, shotCounter = 0;
@@ -47,6 +48,8 @@ public class Player
         x = (int) (64 * screenRatioX);
     }
 
+    //used to space the drawing of new bullets
+    //fire rate
     Bitmap getPlayer() {
         if (shoot % 15 == 0) {
 
@@ -68,6 +71,7 @@ public class Player
         return spaceShip;
     }
 
+    //hit box
     Rect getCollisionShape()
     {
         return new Rect(x + 120, y + 100, x + width/2, y + height/2);

@@ -10,12 +10,14 @@ import static com.example.spacecruiser.GameFunction.screenRatioY;
 
 public class Debris
 {
+    //variables
     public int speed = 10;
     int x = 0, y, width, height, debrisCounter = 1;
     Bitmap debris1, debris2, debris3;
 
     Debris (Resources res) {
 
+        //makes debris fields
         debris1 = BitmapFactory.decodeResource(res, R.drawable.debris1);
         debris2 = BitmapFactory.decodeResource(res, R.drawable.debris2);
         debris3 = BitmapFactory.decodeResource(res, R.drawable.debris3);
@@ -36,20 +38,9 @@ public class Debris
         y = -height;
     }
 
+    //return each debris's bitmap
     Bitmap getDebris1()
     {
-//        if (debrisCounter == 1) {
-//            debrisCounter++;
-//            return debris1;
-//        }
-//
-//        if (debrisCounter == 2) {
-//            debrisCounter++;
-//            return debris2;
-//        }
-//
-//        debrisCounter = 1;
-
         return debris1;
     }
 
@@ -63,6 +54,7 @@ public class Debris
         return debris3;
     }
 
+    //hit box
     Rect getCollisionShape()
     {
         return new Rect(x, y, x + width, y + height);

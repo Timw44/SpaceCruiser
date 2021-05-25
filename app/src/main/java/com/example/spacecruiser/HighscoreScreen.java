@@ -31,7 +31,7 @@ public class HighscoreScreen extends AppCompatActivity
     String[] keys = new String[10];
     FirebaseDatabase database;
     DatabaseReference reference;
-    int[] top10 = new int[10];
+    //int[] top10 = new int[10];
     //ArrayList<DatabaseReference> refs;
 
     @Override
@@ -47,6 +47,7 @@ public class HighscoreScreen extends AppCompatActivity
 
 
 
+    //sets high score elements to the highest scores in the database
     public void setLeaderBoard()
     {
         setPositions();
@@ -127,6 +128,7 @@ public class HighscoreScreen extends AppCompatActivity
 
     }
 
+    //puts all text views into array elements
     public void setPositions()
     {
         positions[0] = findViewById(R.id.scoreTX1Key);
@@ -153,6 +155,7 @@ public class HighscoreScreen extends AppCompatActivity
         topS = (TextView) findViewById(R.id.highValueTX);
     }
 
+    //sets highest scores
     public void sort(int value, String name)
     {
         for (int i = 0; i<positions.length; i++)
@@ -172,6 +175,7 @@ public class HighscoreScreen extends AppCompatActivity
         }
     }
 
+    //prevents repeating data
     public boolean checkRepeat(String name)
     {
         for (int i = 0; i<names.length; i++)
@@ -184,7 +188,7 @@ public class HighscoreScreen extends AppCompatActivity
         return false;
     }
 
-
+//goes back to main
     public void back(View view)
     {
         finish();
