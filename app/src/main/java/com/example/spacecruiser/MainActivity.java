@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void creditsClicked(View view)
     {
+        //makes panel appear
         ImageView creditsPanel = (ImageView) findViewById(R.id.creditsIV);
         Button closePanelBtn = (Button) findViewById(R.id.closePanelBtn);
         TextView credits = (TextView) findViewById(R.id.creditsTV);
@@ -72,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void closePanel(View view)
     {
+        //makes panel disappear after x is pressed
         ImageView creditsPanel = (ImageView) findViewById(R.id.creditsIV);
         Button closePanelBtn = (Button) findViewById(R.id.closePanelBtn);
         TextView credits = (TextView) findViewById(R.id.creditsTV);

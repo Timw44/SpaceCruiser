@@ -42,13 +42,16 @@ public class GameScreen extends AppCompatActivity
         setContentView(R.layout.game);
         getSupportActionBar().hide();
 
+        //instantiates firebase database
         database = FirebaseDatabase.getInstance();
 
         highScoreTX = findViewById(R.id.personalHSTX);
+        //gets all saved data in preferences
         SharedPreferences prefs = getSharedPreferences("game", MODE_PRIVATE);
         highScoreTX.setText("" + prefs.getInt("highscore2", 0));
 
 
+        //sets personal high score and displays play again
         if(prefs.getInt("highscore1", 0) != prefs.getInt("highscore2", 0))
         {
             SharedPreferences.Editor editor = prefs.edit();
@@ -83,6 +86,7 @@ public class GameScreen extends AppCompatActivity
 
     public void startGame(View view)
     {
+        //hides games screen and starts game function
         SharedPreferences prefs = getSharedPreferences("game", MODE_PRIVATE);
         beginBtn = (Button) findViewById(R.id.beginBtn);
         backBtn = (Button) findViewById(R.id.backGameBtn);
@@ -93,7 +97,7 @@ public class GameScreen extends AppCompatActivity
         beginBtn.setVisibility(View.GONE);
         backBtn.setVisibility(View.GONE);
         intro.setVisibility(View.GONE);
-        //ship.setVisibility(View.VISIBLE);
+
         setContentView(gameFunction);
         super.onResume();
         gameFunction.start();
@@ -101,6 +105,7 @@ public class GameScreen extends AppCompatActivity
 
     public void endGame()
     {
+        //shows play again instead of first game screen elements
         beginBtn = (Button) findViewById(R.id.beginBtn);
         backBtn = (Button) findViewById(R.id.backGameBtn);
         intro = (TextView) findViewById(R.id.introTX);
@@ -111,6 +116,7 @@ public class GameScreen extends AppCompatActivity
         backBtn.setVisibility(View.VISIBLE);
     }
 
+    //moves back to main screen
     public void backToMainMenu(View view)
     {
         finish();

@@ -10,12 +10,14 @@ import static com.example.spacecruiser.GameFunction.screenRatioY;
 
 public class Asteroids
 {
+    //variables
     public int speed = 10;
     int x = 0, y, width, height, asterCounter = 1;
     Bitmap aster1, aster2, aster3;
 
     Asteroids (Resources res) {
 
+        //creates field for them to be drawn
         aster1 = BitmapFactory.decodeResource(res, R.drawable.asteroid);
         aster2 = BitmapFactory.decodeResource(res, R.drawable.asteroid);
         aster3 = BitmapFactory.decodeResource(res, R.drawable.asteroid);
@@ -36,6 +38,7 @@ public class Asteroids
         y = -height;
     }
 
+    //draws the three asteroids
     Bitmap getAsteroid()
     {
         if (asterCounter == 1) {
@@ -53,6 +56,7 @@ public class Asteroids
         return aster3;
     }
 
+    //hit box
     Rect getCollisionShape()
     {
         return new Rect(x, y, x + width, y + height);
