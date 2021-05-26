@@ -16,7 +16,6 @@ public class RubberDuck
     Bitmap duck;
 
     RubberDuck (Resources res) {
-
         //makes duck bitmap field
         duck = BitmapFactory.decodeResource(res, R.drawable.duck);
 

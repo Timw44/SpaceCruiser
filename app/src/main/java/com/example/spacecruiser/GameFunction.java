@@ -38,11 +38,12 @@ public class GameFunction extends SurfaceView implements Runnable
     private Player player;
     private Enemy[] enemies;
     private Debris[] debris;
+    private RubberDuck duck;
     private Asteroids[] asteroids;
     private Random random;
     private List<Bullet> bullets;
     private int screenX, screenY, score = 0;
-    private int p, a, d = 0;
+    private int p, a, d, r = 0;
     private SharedPreferences prefs;
     public GameScreen activity;
     public static float screenRatioX, screenRatioY;
@@ -74,6 +75,7 @@ public class GameFunction extends SurfaceView implements Runnable
         enemies = new Enemy[4];
         asteroids = new Asteroids[3];
         debris = new Debris[3];
+        duck = new RubberDuck(getResources());
 
         for(int i = 0; i<enemies.length; i++)
         {
@@ -142,9 +144,23 @@ public class GameFunction extends SurfaceView implements Runnable
             }
             bullet.y -= 100 * screenRatioY;
 
+            if(Rect.intersects(duck.getCollisionShape(), bullet.getCollisionShape()))//duck hits a bullet
+            {
+                score += 10;
+                int bound = (int) (35 * screenRatioX);
+                duck.speed = random.nextInt(bound);
+
+                if (duck.speed < 20 * screenRatioX) {
+                    duck.speed = (int) (20 * screenRatioX);
+                }
+                duck.y = 0 - random.nextInt(2000);
+                duck.x = random.nextInt(screenX - duck.width);
+                bullet.x = -100;
+            }
+
             for (Enemy enemy : enemies)
             {
-               if (Rect.intersects(enemy.getCollisionShape(), bullet.getCollisionShape()))
+               if (Rect.intersects(enemy.getCollisionShape(), bullet.getCollisionShape()))//if enemy hits a bullet
                 {
                     score += 2;
                     int bound = (int) (30 * screenRatioX);
@@ -160,14 +176,14 @@ public class GameFunction extends SurfaceView implements Runnable
             }
             for (Asteroids asteroid : asteroids)
             {
-                if (Rect.intersects(asteroid.getCollisionShape(), bullet.getCollisionShape()))
+                if (Rect.intersects(asteroid.getCollisionShape(), bullet.getCollisionShape()))//if bullet hits asteroid
                 {
                     bullet.x = -100;
                 }
             }
             for (Debris deb : debris)
             {
-                if (Rect.intersects(deb.getCollisionShape(), bullet.getCollisionShape()))
+                if (Rect.intersects(deb.getCollisionShape(), bullet.getCollisionShape()))//debris hits a bullet
                 {
                     score++;
                     int bound = (int) (20 * screenRatioX);
@@ -201,8 +217,8 @@ public class GameFunction extends SurfaceView implements Runnable
                 enemy.x = random.nextInt(screenX - enemy.width);
                 p++;
             }
-            if (Rect.intersects(enemy.getCollisionShape(), player.getCollisionShape())) {
-
+            if (Rect.intersects(enemy.getCollisionShape(), player.getCollisionShape())) //player hits enemy
+            {
                 isGameOver = true;
                 return;
             }
@@ -225,8 +241,8 @@ public class GameFunction extends SurfaceView implements Runnable
                 aster.x = random.nextInt(screenX - aster.width);
                 a++;
             }
-            if (Rect.intersects(aster.getCollisionShape(), player.getCollisionShape())) {
-
+            if (Rect.intersects(aster.getCollisionShape(), player.getCollisionShape())) //player hits asteroid
+            {
                 isGameOver = true;
                 return;
             }
@@ -249,12 +265,29 @@ public class GameFunction extends SurfaceView implements Runnable
                 deb.x = random.nextInt(screenX - deb.width);
                 d++;
             }
-            if (Rect.intersects(deb.getCollisionShape(), player.getCollisionShape())) {
-
+            if (Rect.intersects(deb.getCollisionShape(), player.getCollisionShape())) //player hits debris
+            {
                 isGameOver = true;
                 return;
             }
         }//end of debris for each loop
+
+        //resets rubber duck position if goes off screen
+        duck.y += duck.speed;
+
+        if(duck.y > screenY || r == 0)
+        {
+            int bound = (int) (35 * screenRatioX);
+            duck.speed = random.nextInt(bound);
+
+            if (duck.speed < 20 * screenRatioX) {
+                duck.speed = (int) (20 * screenRatioX);
+            }
+            duck.y = 0 - random.nextInt(2000);
+            duck.x = random.nextInt(screenX - duck.width);
+            r++;
+        }
+
         dud.removeAll(bullets);//removes dud bullets
     }
 
@@ -304,6 +337,8 @@ public class GameFunction extends SurfaceView implements Runnable
             canvas.drawBitmap(debris[0].getDebris1(), debris[0].x, debris[0].y, paint);
             canvas.drawBitmap(debris[1].getDebris2(), debris[1].x, debris[1].y, paint);
             canvas.drawBitmap(debris[2].getDebris3(), debris[2].x, debris[2].y, paint);
+
+            canvas.drawBitmap(duck.getDuck(), duck.x, duck.y, paint);
 
             getHolder().unlockCanvasAndPost(canvas);
         }
